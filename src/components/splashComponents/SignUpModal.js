@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import axios from 'axios';
 
-const primaryColor = '#326771';
 const secondaryColor = '#9000d9';
 const backgroundUrl = 'https://images.unsplash.com/photo-1538170819641-15b741105cb3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80'
 
@@ -40,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
      minHeight: '70vh'
     },
     padding: '0px',
-    display: 'flex',
     marginTop: '10vh',
     justifyContent: 'space-evenly',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
+  },
+  link: {
+    textDecoration: 'none'
   },
   formTab: {
     backgroundColor: '#FFF',
@@ -219,18 +220,44 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function LoginModal(props) {
+export default function SignUpModalModal(props) {
   console.log(props)
   const classes = useStyles();
-  const handleOpen = props.openModal;
   const handleClose = props.closeModal;
   var open = props.openVal;
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
+  const [firstname, setFirstname] = useState([]);
+  const [lastname, setLastname] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(username,password);
+      console.clear();
+      console.log(firstname,lastname,username,password);
+      
+      const data = {
+        username,
+        password,
+        firstName:firstname,
+        lastName:lastname,
+      }
+      var config = {
+        method: 'post',
+        url: 'http://localhost:8080/CreateAccount',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : JSON.stringify(data)
+      };      
+      
+      try{
+        const response = await axios(config);
+        console.log(response.data.error);
+        if(response.data.error)
+          alert('Account created successfully!')
+      }catch(error){
+        console.log(error);
+      }
   }
 
   return (
@@ -249,30 +276,37 @@ export default function LoginModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <div className={classes.formTab}>
-            <div className={classes.formTextBox}>
-            Welcome Back!
+          <div className={classes.formTab}>
+          <div className={classes.formTextBox}>
+            Hop onboard!
           </div>
           <form className={classes.loginForm} onSubmit = {e => { handleSubmit(e) }}>
             <div className={classes.formControl}>
+              <label className={classes.inputLabel}>First Name</label>
+              <input type='text' className={classes.inputField} placeholder='John' onChange={e => setFirstname(e.target.value)}/>
+            </div>
+            <div className={classes.formControl}>
+            <label className={classes.inputLabel}>Last Name</label>
+            <input type='text' className={classes.inputField} placeholder='Doe' onChange={e => setLastname(e.target.value)}/>
+          </div>
+            <div className={classes.formControl}>
               <label className={classes.inputLabel}>Username</label>
-              <input type='text' className={classes.inputField} placeholder='John Doe' onChange={e => setUsername(e.target.value)}/>
+              <input type='text' className={classes.inputField} placeholder='john_doe' onChange={e => setUsername(e.target.value)} />
             </div>
             <div className={classes.formControl}>
               <label className={classes.inputLabel}>Password</label>
               <input type='password' className={classes.inputField} placeholder='Min. 8 characters' onChange={e => setPassword(e.target.value)}/>
             </div>
             <div className={classes.formControl}>
-              <input type='submit' value="Login" className={classes.submitButton}/>
+              <input type='submit' value="Sign Up" className={classes.submitButton}/>
             </div>
             <div className={classes.formControl}>
               <label className={classes.signupText}>
-                Don't have an account?<br className={classes.ghostBreak} /><span className={classes.colorText}>Sign Up today</span>
+                Already have an account?<Link className={classes.link}><span className={classes.colorText}>Log in here</span></Link>
               </label>
             </div>
           </form>
-            </div>
-            
+        </div>
           </div>
         </Fade>
       </Modal>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageCard from './ImageCard';
-import cards from '../static/cards';
-import useWindowPosition from '../hook/useWindowPosition';
+import cards from '../../static/cards';
+import useWindowPosition from '../../hook/useWindowPosition';
 import Carousel from 'react-material-ui-carousel'
 
 const useStyles = makeStyles((theme) => ({

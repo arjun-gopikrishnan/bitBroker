@@ -2,13 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button'
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Collapse } from '@material-ui/core';
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme)=>({
   root: {
@@ -85,7 +83,7 @@ const useStyles = makeStyles((theme)=>({
 
 export default function ImageCard({ card, checked }) {
   const classes = useStyles();
-  //alert(checked);
+
   return (
     <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
       <Card className={classes.root}>
@@ -114,7 +112,7 @@ export default function ImageCard({ card, checked }) {
         </CardContent>
         <CardActions>
         <Button size="small">
-          <a href = {card.link} target="_blank" className={classes.link}> 
+          <a href = {card.link} target="_blank" rel="noopener noreferrer" className={classes.link}> 
             READ MORE
           </a>
         </Button>

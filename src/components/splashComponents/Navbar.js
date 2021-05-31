@@ -1,14 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, IconButton, Toolbar } from '@material-ui/core';
-import SortIcon from '@material-ui/icons/Sort';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import { AppBar, Toolbar } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
-import { useLayoutEffect, useState } from 'react';
-import LoginModal from '../components/LoginModal'
-import SignUpModal from '../components/SignUpModal'
+import LoginModal from './LoginModal'
+import SignUpModal from './SignUpModal'
 const useStyles = makeStyles((theme) => ({
   appbar: {
     background: 'none',
@@ -109,9 +104,8 @@ const useStyles = makeStyles((theme) => ({
     pointer: 'cursor',
   }
 }));
-export default function Navbar() {
+export default function Navbar(props) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [logOpen, setLog] = React.useState(false);
   const [signOpen,setSign] = React.useState(false);
   const handlelogOpen = () => {
@@ -130,17 +124,6 @@ export default function Navbar() {
     setSign(false);
   };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
-
   return (
     <div>
       <AppBar className={classes.appbar} elevation={0}>
@@ -158,7 +141,7 @@ export default function Navbar() {
               </Link>
         </Toolbar>
       </AppBar>
-      <LoginModal openModal={handlelogOpen} closeModal={handlelogClose} openVal={logOpen}/>
+      <LoginModal openModal={handlelogOpen} closeModal={handlelogClose} openVal={logOpen} hooks={props.hooks}/>
       <SignUpModal openModal={handlesignOpen} closeModal={handlesignClose} openVal={signOpen}/>
     </div>
   );
