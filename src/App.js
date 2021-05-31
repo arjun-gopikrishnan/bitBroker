@@ -4,6 +4,7 @@ import { BrowserRouter,Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard';
 
 export default function App() {
+  
   const [signedIn, setSign] = React.useState(false);
   const [currentUser,setUser] = React.useState(null);
   const hooks = {

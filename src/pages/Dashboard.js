@@ -6,7 +6,8 @@ export default function Dashboard(props) {
   const setSign = props.hooks.setSign;
   const setUser = props.hooks.setUser;
   const currentUser = props.currentUser;
-  console.log(currentUser)
+  console.log(window.sessionStorage);
+
   const logOut = async () =>{
     const data = {
       username: currentUser.username,
@@ -24,6 +25,7 @@ export default function Dashboard(props) {
     try{
       const response = await axios(config);
       if(response.data.error === false){
+        window.sessionStorage.clear();
         setSign(false);
         setUser(true);
       }else{

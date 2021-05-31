@@ -248,7 +248,9 @@ export default function LoginModal(props) {
         }
         
         if(data.error === false){
-          console.log(data.apiKey)
+          window.sessionStorage.clear();
+          window.sessionStorage.setItem('data',data);
+          //window.sessionStorage.setItem('apikey',data.apiKey);
           setSign(true);
           setUser(data);
         }
