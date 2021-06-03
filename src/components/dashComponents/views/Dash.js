@@ -6,7 +6,6 @@ import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import { teal } from '@material-ui/core/colors';
 import { orange } from '@material-ui/core/colors';
-import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -35,8 +34,8 @@ const Dash = (props) =>{
             <div className={classes.mincardContainer}>
                 <Minicard iconColor={green} title="BitCoin" subtitle="Most valuable Share" shareVal="38.5K$" iconvalue={1}/>
                 <Minicard iconColor={red} title="DogeCoin" subtitle="Least valuable Share" shareVal="0.41$" iconvalue={2}/>
-                <Minicard iconColor={teal}/>
-                <Minicard iconColor={orange}/>
+                <Minicard iconColor={teal} title="+237 Today" subtitle="Total profit/Loss" shareVal="1000$" iconvalue={3}/>
+                <Minicard iconColor={orange} title="Cumulative share value" subtitle="Wallet Balance" shareVal="2800$" iconvalue={4}/>
             </div>
             <div className={classes.mincardContainer}>
                 <Largecard />

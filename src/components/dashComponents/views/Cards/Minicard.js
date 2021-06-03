@@ -8,14 +8,16 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider'
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import MoneyOffOutlinedIcon from '@material-ui/icons/MoneyOffOutlined';
+import ImportExportOutlinedIcon from '@material-ui/icons/ImportExportOutlined';
+import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceWalletOutlined';
+
 import { green } from '@material-ui/core/colors';
-import { red } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '22%',
-    
+    borderRadius: '7px',
     [theme.breakpoints.down('md')]: {
       width: '80%',
       marginLeft: '10%',
@@ -53,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Mincard(props) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
   const iconColor = props.iconColor?props.iconColor:green;
   const title = props.title?props.title:'Title';
   const subtitle = props.subtitle?props.subtitle:'Subtitle';
@@ -65,6 +66,10 @@ export default function Mincard(props) {
       return <MonetizationOnOutlinedIcon className={classes.icon} style={{color: iconColor[500] }} />
     else if(value===2)
       return <MoneyOffOutlinedIcon className={classes.icon} style={{color: iconColor[500] }} />
+    else if(value===3)
+      return <ImportExportOutlinedIcon className={classes.icon} style={{color: iconColor[500] }} />
+    else if(value===4)
+      return <AccountBalanceWalletOutlinedIcon className={classes.icon} style={{color: iconColor[500] }} />
   }
   return (
     <Card className={classes.root} variant="elevation">
@@ -82,7 +87,9 @@ export default function Mincard(props) {
       <Divider variant="middle" />
       <CardActions>
         <Button size="small">
-          {subtitle}
+          <Typography color="textSecondary">
+            {subtitle}
+          </Typography>
         </Button>
       </CardActions>
     </Card>
