@@ -6,7 +6,7 @@ var axios = require('axios');
 
 const useStyles = makeStyles((theme)=>({
   root: {
-    
+    backgroundColor: '#f4f3ef'
   }
 }));
 
@@ -47,9 +47,6 @@ export default function Dashboard(props) {
   return (
     <div className = {classes.root}>
       <Dashpanel props={props} logOut={logOut}/>
-      <div>
-        Dashboard
-      </div>
     </div>
   );
 }

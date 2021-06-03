@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title:{
     marginTop: '10px',
+    color: '#fff'
   },
   
   toolbar: {
