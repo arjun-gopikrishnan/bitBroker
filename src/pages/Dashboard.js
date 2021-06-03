@@ -1,12 +1,20 @@
 import React from 'react';
-import UserDetails from '../components/dashComponents/UserDetails';
+import Dashpanel from '../components/dashComponents/Dashpanel'
+import { makeStyles } from '@material-ui/core/styles';
+
 var axios = require('axios');
+
+const useStyles = makeStyles((theme)=>({
+  root: {
+    
+  }
+}));
 
 export default function Dashboard(props) {
   const setSign = props.hooks.setSign;
   const setUser = props.hooks.setUser;
   const currentUser = props.currentUser;
-  console.log(window.sessionStorage);
+  const classes = useStyles();
 
   const logOut = async () =>{
     const data = {
@@ -37,13 +45,15 @@ export default function Dashboard(props) {
   }
 
   return (
-    <div>
-      Dashboard
-      {currentUser?
-        <UserDetails currentUser={currentUser} logOut={logOut}/>
-        :
-        <p>Loading</p>
-      }
+    <div className = {classes.root}>
+      <Dashpanel props={props} logOut={logOut}/>
+      <div>
+        Dashboard
+      </div>
     </div>
   );
 }
+
+/*
+currentUser={currentUser} logOut={logOut}
+*/

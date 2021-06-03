@@ -15,7 +15,7 @@ export default function App() {
     <div>
       <BrowserRouter>
         <div>
-          <Route path="/home" 
+          <Route path="/" 
           render={!signedIn?
               (props) => (
               <SplashScreen {...props} hooks={hooks} />

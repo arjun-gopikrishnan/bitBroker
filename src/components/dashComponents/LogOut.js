@@ -1,10 +1,9 @@
 import React from 'react';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const LogOut = (props) =>{
     return (
-    <button onClick={props.logOut}>
-        Logout        
-    </button>
+        <ExitToAppIcon onClick={props.logOut}/>
     );
 }
 

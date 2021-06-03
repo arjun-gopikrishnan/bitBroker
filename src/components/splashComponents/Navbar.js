@@ -129,7 +129,7 @@ export default function Navbar(props) {
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar className={classes.appbarWrapper}>
               <div className={classes.appbarTitle}> 
-              <Link className= {classes.link} to = "/home">
+              <Link className= {classes.link} to = "/">
                 Bit<span className={classes.colorText}>Broker</span>
               </Link>
               </div>
