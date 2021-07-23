@@ -15,7 +15,7 @@ export default function Dashboard(props) {
   const setUser = props.hooks.setUser;
   const currentUser = props.currentUser;
   const classes = useStyles();
-
+  console.log(currentUser);
   const logOut = async () =>{
     const data = {
       username: currentUser.username,

@@ -13,15 +13,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 const UserDetails = (props) =>{
-  //const currentUser = props.currentUser;
-  //const name = currentUser.firstName + ' ' + currentUser.lastName;
+  
   const tab = props.sidebarHooks.activeTab;
   const classes = useStyles();
   const handleView = (activeTab) =>{
     if(activeTab === 'Dashboard')
       return <Dash />;
     else if(activeTab === 'Holdings')
-      return <Holdings />;
+      return <Holdings props={props}/>;
     else if(activeTab === 'Market')
       return <Market />;
     else if(activeTab === 'Profile')
